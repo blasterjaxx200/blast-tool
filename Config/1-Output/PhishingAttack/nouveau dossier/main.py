@@ -1,0 +1,3 @@
+stats = "vrai"
+
+print = stats
