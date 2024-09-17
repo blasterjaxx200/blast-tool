@@ -1,3 +1,0 @@
-stats = "vrai"
-
-print = stats
