@@ -29,8 +29,15 @@ menu = """
                                   """  
 menu = fade.fire(menu)
 
+def clear_screen():
+    """Clear the console screen depending on the OS."""
+    if os.name == 'nt':  # Windows
+        os.system('cls')
+    else:  # Unix/Linux
+        os.system('clear')
+
 def main():
-    os.system("clear")  # Nettoie l'écran
+    clear_screen()  # Nettoie l'écran
     print(banner)  # Affiche le banner en dégradé de feu
     print(menu)  # Affiche le menu
 
@@ -60,4 +67,3 @@ def main():
         main()  # Réaffiche le menu
 
 main()
-
