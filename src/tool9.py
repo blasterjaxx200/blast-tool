@@ -1,36 +1,67 @@
-import os
-import subprocess
-from datetime import datetime
+from Config.Util import *
+from Config.Config import *
+try:
+    import requests
+except Exception as e:
+   ErrorModule(e)
+   
+Title("Ip Lookup")
 
-# Crée le dossier 'scan' s'il n'existe pas
-if not os.path.exists('scan'):
-    os.makedirs('scan')
+try:
+    Slow(map_banner)
+    ip = input(f"\n{BEFORE + current_time_hour() + AFTER} {INPUT} Ip -> {reset}")
 
-# Nom du fichier avec la date et l'heure
-filename = os.path.join('scan', f'scan_results_{datetime.now().strftime("%Y%m%d_%H%M%S")}.txt')
-
-def run_clamscan(directory):
     try:
-        result = subprocess.run(['clamscan', '--recursive', '--log=' + filename, directory], capture_output=True, text=True)
-        if result.returncode == 0:
-            return "Analyse terminée sans détection de virus."
-        else:
-            return "Des virus ou logiciels malveillants ont été détectés. Consultez le fichier de log pour plus de détails."
-    except FileNotFoundError:
-        return "ClamAV n'est pas installé ou non trouvé."
+        response = requests.get(f"https://{website}/api/ip/ip={ip}")
+        api = response.json()
 
-# Chemin du répertoire à analyser
-directory_to_scan = '/'
+        ip = api.get('ip')
+        status = api.get('status')
+        country = api.get('country')
+        country_code = api.get('country_code')
+        region = api.get('region')
+        region_code = api.get('region_code')
+        zip = api.get('zip')
+        city = api.get('city')
+        latitude = api.get('latitude')
+        longitude = api.get('longitude')
+        timezone = api.get('timezone')
+        isp = api.get('isp')
+        org = api.get('org')
+        as_host = api.get('as')
 
-# Effectuer l'analyse
-scan_result = run_clamscan(directory_to_scan)
+    except:
+        response = requests.get(f"http://ip-api.com/json/{ip}")
+        api = response.json()
 
-# Écrire le résultat dans le fichier
-with open(filename, 'w') as file:
-    file.write(f"Date et Heure de l'analyse: {datetime.now()}\n")
-    file.write(scan_result)
-    file.write("\n\nDétails de l'analyse:\n")
-    with open(filename, 'r') as log_file:
-        file.write(log_file.read())
+        status = "Valid" if api.get('status') == "success" else "Invalid"
+        country = api.get('country', "None")
+        country_code = api.get('countryCode', "None")
+        region = api.get('regionName', "None")
+        region_code = api.get('region', "None")
+        zip = api.get('zip', "None")
+        city = api.get('city', "None")
+        latitude = api.get('lat', "None")
+        longitude = api.get('lon', "None")
+        timezone = api.get('timezone', "None")
+        isp = api.get('isp', "None")
+        org = api.get('org', "None")
+        as_host = api.get('as', "None")
 
-print(f"L'analyse a été enregistrée dans '{filename}'. Cliquez sur l'espace pour revenir à main.")
+    Slow(f"""    
+    {INFO_ADD} Status     : {white}{status}{red}
+    {INFO_ADD} Country    : {white}{country} ({country_code}){red}
+    {INFO_ADD} Region     : {white}{region} ({region_code}){red}
+    {INFO_ADD} Zip        : {white}{zip}{red}
+    {INFO_ADD} City       : {white}{city}{red}
+    {INFO_ADD} Latitude   : {white}{latitude}{red}
+    {INFO_ADD} Longitude  : {white}{longitude}{red}
+    {INFO_ADD} Timezone   : {white}{timezone}{red}
+    {INFO_ADD} Isp        : {white}{isp}{red}
+    {INFO_ADD} Org        : {white}{org}{red}
+    {INFO_ADD} As         : {white}{as_host}{red}{reset}
+    """)
+
+   
+except Exception as e:
+    Error(e)
