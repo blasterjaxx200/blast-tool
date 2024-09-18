@@ -22,9 +22,9 @@ menu = """
                    ║                                                   ║ 
                    ║ [3] create file dox           [8] scan pc         ║ 
                    ║                                                   ║ 
-                   ║ [4] darkweb link              [9] scan antivirus  ║ 
+                   ║ [4] darkweb link              [9] ip lookup       ║ 
                    ║                                                   ║ 
-                   ║ [5] website scan              [10] soon           ║ 
+                   ║ [5] website scan              [10] token joiner   ║ 
                    ╚═══════════════════════════════════════════════════╝
                                   """  
 menu = fade.fire(menu)
@@ -61,6 +61,8 @@ def main():
         os.system("python ./src/tool8.py")
     elif choice == "9":
         os.system("python ./src/tool9.py")
+    elif choice == "10":
+        os.system("python ./src/tool10.py")
     else:
         print("Merci de rentrer un nombre valide.")
         time.sleep(1)  # Pause pour afficher l'erreur
