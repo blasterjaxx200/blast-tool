@@ -1,6 +1,6 @@
 
 
-
+<img src="https://discord.com/channels/1285704803552591923/1285704915989168190/1285872317729083433">
 
 <p>
   <h3 align="center">⭐ Don't forget to set the repository to "Star" ⭐</h3>
@@ -9,7 +9,7 @@
 <h1>📜・Description:</h1>
 
 <p>
-    All scripts in the "<a href="https://github.com/loxyteck/RedTiger-Tools/tree/main/Settings/Program/FileDetectedByAntivirus">Settings/Program/FileDetectedByAntivirus</a>" folder are <strong>detected by the antivirus</strong> but pose no threat to you. These are <strong>not backdoors or malware</strong>.
+  
 
   👨‍💻 -> Developed in <strong>Python</strong>.<br>
   🌍 -> Tool in <strong>English and french</strong>.<br>
