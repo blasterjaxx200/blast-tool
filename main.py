@@ -32,7 +32,7 @@ menu = """
                    ║                                                   ║
                    ║ [11] discord server info       [16] soon          ║
                    ║                                                   ║
-                   ║ [12] execute Builder.bat       [17] soon          ║
+                   ║ [12] build token grabber       [17] soon          ║
                    ║                                                   ║ 
                    ║ [13] soon                      [18] soon          ║ 
                    ║                                                   ║ 
